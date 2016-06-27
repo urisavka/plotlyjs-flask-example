@@ -3,8 +3,6 @@ from flask import Flask, render_template
 import json
 import plotly
 
-import pandas as pd
-import numpy as np
 
 app = Flask(__name__)
 app.debug = True
@@ -12,8 +10,6 @@ app.debug = True
 
 @app.route('/')
 def index():
-    rng = pd.date_range('1/1/2011', periods=7500, freq='H')
-    ts = pd.Series(np.random.randn(len(rng)), index=rng)
 
     graphs = [
         dict(
@@ -25,7 +21,7 @@ def index():
                 ),
             ],
             layout=dict(
-                title='first graph'
+                title='graph for Diana'
             )
         ),
 
@@ -38,18 +34,10 @@ def index():
                 ),
             ],
             layout=dict(
-                title='second graph'
+                title='second graph for Diana'
             )
         ),
 
-        dict(
-            data=[
-                dict(
-                    x=ts.index,  # Can use the pandas data structures directly
-                    y=ts
-                )
-            ]
-        )
     ]
 
     # Add "ids" to each of the graphs to pass up to the client
